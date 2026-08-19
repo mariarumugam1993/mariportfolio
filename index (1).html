@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A. Mariammal — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#173B36;
+    --ink-soft:#3C5B55;
+    --parchment:#F2F4EF;
+    --panel:#FFFFFF;
+    --line:#D8DED4;
+    --gold:#A9772F;
+    --gold-soft:#EADCC2;
+    --coral:#C0603F;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --serif: 'Fraunces', serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+  }
+
+  ::selection{ background:var(--gold-soft); color:var(--ink); }
+
+  a{color:inherit;}
+
+  .rule{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:0;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(242,244,239,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .nav-mark{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.06em;
+    color:var(--ink); text-decoration:none; font-weight:500;
+  }
+  .nav-links{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.04em;
+    text-decoration:none; color:var(--ink-soft);
+    text-transform:uppercase;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--coral); }
+  @media (max-width:640px){ .nav-links{ gap:16px; } .nav-links a{ font-size:11px; } }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:96px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:56px 56px;
+    opacity:0.35;
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--gold);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:""; width:22px; height:1px; background:var(--gold);
+  }
+  h1.name{
+    font-family:var(--serif);
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(42px, 7vw, 74px);
+    line-height:1.02;
+    margin:0 0 22px;
+    letter-spacing:-0.01em;
+  }
+  h1.name em{
+    font-style:italic; font-weight:400; color:var(--coral);
+  }
+  .hero-sub{
+    max-width:560px;
+    font-size:17px;
+    color:var(--ink-soft);
+    margin:0 0 34px;
+  }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .btn{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.03em;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:2px;
+    display:inline-block;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary{ background:var(--ink); color:var(--parchment); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 6px 0 var(--gold-soft); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--ink); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .hero-meta{
+    margin-top:56px;
+    display:flex; gap:36px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:12px; color:var(--ink-soft);
+  }
+  .hero-meta span{ color:var(--ink); }
+
+  /* ---------- SECTION HEADS ---------- */
+  section{ padding:64px 0; position:relative; }
+  .sec-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:36px;
+  }
+  .sec-num{
+    font-family:var(--mono); font-size:12px; color:var(--gold);
+  }
+  .sec-title{
+    font-family:var(--serif); font-weight:600; font-size:28px; margin:0;
+  }
+  .sec-note{
+    margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--ink-soft);
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-text{
+    font-size:16.5px; color:var(--ink-soft); max-width:640px;
+  }
+  .about-text strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- SKILLS as schema table ---------- */
+  .schema{
+    border:1px solid var(--line);
+    background:var(--panel);
+  }
+  .schema-row{
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom:1px solid var(--line);
+  }
+  .schema-row:last-child{ border-bottom:none; }
+  .schema-key{
+    font-family:var(--mono); font-size:12.5px; color:var(--gold);
+    padding:16px 20px;
+    border-right:1px solid var(--line);
+    text-transform:uppercase; letter-spacing:0.04em;
+    display:flex; align-items:center;
+  }
+  .schema-val{
+    padding:16px 20px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  }
+  .chip{
+    font-family:var(--mono); font-size:12.5px;
+    background:var(--parchment);
+    border:1px solid var(--line);
+    padding:5px 11px; border-radius:2px;
+    color:var(--ink);
+  }
+  @media (max-width:640px){
+    .schema-row{ grid-template-columns:1fr; }
+    .schema-key{ border-right:none; border-bottom:1px solid var(--line); padding:12px 16px; }
+    .schema-val{ padding:12px 16px; }
+  }
+
+  /* ---------- PROJECT ---------- */
+  .project-card{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:38px;
+    position:relative;
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:"";
+    position:absolute; top:0; right:0; bottom:0; width:140px;
+    background:
+      repeating-linear-gradient(135deg, rgba(242,244,239,0.05) 0 2px, transparent 2px 14px);
+  }
+  .project-tag{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.08em;
+    color:var(--gold-soft); text-transform:uppercase;
+    margin-bottom:14px; display:block;
+  }
+  .project-title{
+    font-family:var(--serif); font-size:26px; font-weight:600; margin:0 0 14px;
+  }
+  .project-desc{
+    color:#D6DCD4; max-width:520px; font-size:15.5px; margin-bottom:22px;
+  }
+  .project-stack{
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .project-stack span{
+    font-family:var(--mono); font-size:11.5px;
+    border:1px solid rgba(242,244,239,0.25);
+    padding:5px 10px; color:#E8EAE4;
+  }
+
+  /* ---------- EDUCATION timeline ---------- */
+  .edu-row{
+    display:grid;
+    grid-template-columns: 110px 1fr 90px;
+    gap:18px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .edu-row:first-child{ border-top:1px solid var(--line); }
+  .edu-year{
+    font-family:var(--mono); font-size:12.5px; color:var(--ink-soft);
+  }
+  .edu-inst{ font-size:15.5px; }
+  .edu-inst .edu-q{ display:block; font-weight:600; color:var(--ink); }
+  .edu-inst .edu-s{ display:block; font-size:13.5px; color:var(--ink-soft); margin-top:2px; }
+  .edu-pct{
+    font-family:var(--mono); font-size:13px; color:var(--gold); text-align:right;
+  }
+  @media (max-width:640px){
+    .edu-row{ grid-template-columns:1fr; gap:4px; }
+    .edu-pct{ text-align:left; }
+  }
+
+  /* ---------- ACTIVITIES + LANGUAGES ---------- */
+  .split{
+    display:grid; grid-template-columns:1.4fr 1fr; gap:48px;
+  }
+  @media (max-width:720px){ .split{ grid-template-columns:1fr; } }
+  .log-list{ list-style:none; margin:0; padding:0; }
+  .log-list li{
+    display:grid; grid-template-columns:24px 1fr;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px; color:var(--ink-soft);
+  }
+  .log-list li:first-child{ border-top:1px solid var(--line); }
+  .log-list li::before{
+    content:"›";
+    font-family:var(--mono); color:var(--coral); font-weight:600;
+  }
+  .lang-list{ list-style:none; margin:0; padding:0; }
+  .lang-list li{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 0; border-bottom:1px solid var(--line);
+    font-family:var(--mono); font-size:13px;
+  }
+  .lang-list li:first-child{ border-top:1px solid var(--line); }
+  .dots{ display:flex; gap:4px; }
+  .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); }
+  .dot.filled{ background:var(--gold); }
+
+  .hobby-row{
+    margin-top:28px;
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .hobby-row span{
+    font-family:var(--mono); font-size:12px;
+    color:var(--ink-soft);
+    padding:6px 12px;
+    border:1px dashed var(--line);
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--parchment);
+    padding:72px 0 40px;
+    margin-top:40px;
+  }
+  footer .sec-title{ color:var(--parchment); }
+  footer .eyebrow{ color:var(--gold-soft); }
+  footer .eyebrow::before{ background:var(--gold-soft); }
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+    margin-top:36px;
+  }
+  @media (max-width:720px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-card{
+    border:1px solid rgba(242,244,239,0.18);
+    padding:22px;
+  }
+  .contact-card .label{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--gold-soft); margin-bottom:10px; display:block;
+  }
+  .contact-card a, .contact-card span.value{
+    font-size:15px; text-decoration:none; color:var(--parchment);
+  }
+  .contact-card a:hover{ color:var(--coral); }
+  .foot-bottom{
+    margin-top:56px; padding-top:24px;
+    border-top:1px solid rgba(242,244,239,0.15);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    font-family:var(--mono); font-size:11.5px; color:#9FB0AA;
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0; transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--coral);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="nav-mark" href="#top">A. MARIAMMAL</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="eyebrow">B.Sc. Graduate — Chennai, Tamil Nadu</div>
+    <h1 class="name">Mariammal <em>Arumugam</em></h1>
+    <p class="hero-sub">A dedicated and enthusiastic graduate with a foundation in Visual Basic, .NET and SQL, and a steady interest in learning new technologies and putting them to work.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#project">View project</a>
+    </div>
+    <div class="hero-meta">
+      <div>Location <br><span>Chennai, Tamil Nadu</span></div>
+      <div>Focus <br><span>VB · .NET · SQL</span></div>
+      <div>Languages <br><span>Tamil, English</span></div>
+    </div>
+  </div>
+</header>
+
+<hr class="rule">
+
+<section id="about">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About</h2>
+    </div>
+    <p class="about-text">I'm a <strong>B.Sc. graduate</strong> from NMSSVN College of Arts and Science, Madurai, looking to bring my technical grounding and problem-solving approach to a growing organisation. I enjoy picking apart how systems are put together — from a database schema to a working application — and I'm looking for a role where that curiosity is put to good use.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Skills</h2>
+      <span class="sec-note">schema</span>
+    </div>
+    <div class="schema">
+      <div class="schema-row">
+        <div class="schema-key">Languages</div>
+        <div class="schema-val"><span class="chip">Visual Basic (VB)</span><span class="chip">.NET</span></div>
+      </div>
+      <div class="schema-row">
+        <div class="schema-key">Web</div>
+        <div class="schema-val"><span class="chip">HTML</span></div>
+      </div>
+      <div class="schema-row">
+        <div class="schema-key">Database</div>
+        <div class="schema-val"><span class="chip">SQL</span><span class="chip">MS Access</span></div>
+      </div>
+      <div class="schema-row">
+        <div class="schema-key">Systems</div>
+        <div class="schema-val"><span class="chip">Windows XP</span><span class="chip">Windows 7</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="project">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Academic Project</h2>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">6-month build</span>
+      <h3 class="project-title">Bank Management System</h3>
+      <p class="project-desc">Built to manage customer accounts, transactions and day-to-day banking operations — a Visual Basic front end backed by an MS Access database, handling the core record-keeping a small bank branch would rely on.</p>
+      <div class="project-stack">
+        <span>Frontend — Visual Basic 6.0</span>
+        <span>Backend — MS Access</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="education">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Education</h2>
+    </div>
+    <div class="edu-table">
+      <div class="edu-row">
+        <div class="edu-year">2013 – 2014</div>
+        <div class="edu-inst"><span class="edu-q">B.Sc., Final Year</span><span class="edu-s">NMSSVN College of Arts and Science, Nagamalai, Madurai</span></div>
+        <div class="edu-pct">83%</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">2012 – 2013</div>
+        <div class="edu-inst"><span class="edu-q">B.Sc., Second Year</span><span class="edu-s">NMSSVN College of Arts and Science, Nagamalai, Madurai</span></div>
+        <div class="edu-pct">82%</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">2011 – 2012</div>
+        <div class="edu-inst"><span class="edu-q">B.Sc., First Year</span><span class="edu-s">NMSSVN College of Arts and Science, Nagamalai, Madurai</span></div>
+        <div class="edu-pct">82%</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">2010 – 2011</div>
+        <div class="edu-inst"><span class="edu-q">Higher Secondary (HSC)</span><span class="edu-s">Holy Family Girls Higher Secondary School, Madurai</span></div>
+        <div class="edu-pct">77%</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">2008 – 2009</div>
+        <div class="edu-inst"><span class="edu-q">SSLC</span><span class="edu-s">Holy Family Girls Higher Secondary School, Madurai</span></div>
+        <div class="edu-pct">86%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="activities">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Beyond the classroom</h2>
+    </div>
+    <div class="split">
+      <div>
+        <ul class="log-list">
+          <li>Presented a paper on Nanotechnology at Arunachalam University, Kanyakumari.</li>
+          <li>Participated in a PHP Workshop conducted by the MCA Department, SVN College, Madurai.</li>
+        </ul>
+        <div class="hobby-row">
+          <span>Arts &amp; crafts</span>
+          <span>Reading online</span>
+          <span>Music</span>
+          <span>Team activities</span>
+        </div>
+      </div>
+      <div>
+        <ul class="lang-list">
+          <li>Tamil <span class="dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span></span></li>
+          <li>English <span class="dots"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap reveal">
+    <div class="eyebrow">Let's talk</div>
+    <h2 class="sec-title">Get in touch</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="label">Email</span>
+        <a href="mailto:mariarumugam1993@gmail.com">mariarumugam1993@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <span class="label">Phone</span>
+        <a href="tel:+919025433792">+91 90254 33792</a>
+      </div>
+      <div class="contact-card">
+        <span class="label">Address</span>
+        <span class="value">Phase-4, A3-2, VIP Anugragha Villa Homes, Vanniyar Street, Kolapakkam, Chennai – 600128</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© A. Mariammal</span>
+      <span>Built with care, Chennai</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.12 });
+  revealEls.forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>
